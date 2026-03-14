@@ -53,7 +53,6 @@ https://balun.courses/courses/system_design
       - location           50 byte
       - description        2500 bytes ( 250 worlds * 5 symb * 2 byte )
       - image_base64       2 000 000 bytes ( 2 MB )
-      - image_url          150 bytes
         
       Trafic:
       - Trafic (write) = 5 * 2 003 000 byte = 10 000 000 byte = 10 MB/s
@@ -115,3 +114,36 @@ https://balun.courses/courses/system_design
       - Trafic (write) = 10 MB/s + 120 KB/s +  35 KB/s = 11 MB/s
       - Trafic (read)  = 20 GB/s + 500 KB/s + 17,5 MB/s = 20.1 GB/s
 
+
+
+
+#### Расчет ресурсов : #
+
+ - **Диски :**
+
+   HDD year capacity = 100 МB/с * 86 400 * 365 = 3 ТB 
+
+   SSD year capacity = 500 МB/с * 86 400 * 365 = 15 ТB
+
+                
+
+   Posts = 20 Gb/s * 100 000 * 365 = 730 000 TB ( 730 петабайт )
+    
+     данные поста оставляем в реалиционное БД и можем держать на HDD / SSD , но файлы ( фотографии ) выносим в файловое хранилище тут уже нужен дата центр , можно воспользоваться облачными хранлищами 
+
+
+   Reactions = 620 Kb/s * 100 000 * 365 = 23 TB
+
+     пропуской способности 1 HDD будет достаточно , так что проблема только в памяти если взять диски по 20 TB
+
+     23 / 20 = 1.1 - можно взять с запасом 2 HDD диска по 20 TB
+
+
+   Comments = 18 Mb/s * 100 000 * 365 = 657 TB
+
+    пропуской способности 1 HDD будет достаточно , так что проблема только в памяти если взять диски по 20 TB
+
+     657 / 20 = 33 - можно взять с запасом 35 HDD диска по 20 TB
+
+
+   
