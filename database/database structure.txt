@@ -1,0 +1,50 @@
+Table users {
+id guid [primary key]
+name string
+username string 
+created_at datetime
+}
+
+
+Table posts {
+id guid [primary key]
+user_id guid
+location string
+description string
+image_url string
+created_at datetime
+}
+
+Ref : posts.user_id > users.id // many-to-one
+
+// нужно облачное файловое хранилиже где будут лежать фотографии и ссылка на них будет хранится в таблице posts
+
+
+Table reactions {
+id guid [primary key]
+user_id guid
+post_id string
+reaction_code string
+created_at datetime
+}
+
+Ref : reactions.user_id > users.id // many-to-one
+
+Ref : reactions.post_id > posts.id // many-to-one
+
+
+
+Table comments {
+id guid [primary key]
+user_id guid
+post_id string
+text string
+created_at datetime
+}
+
+Ref : comments.user_id > users.id // many-to-one
+
+Ref : comments.post_id > posts.id // many-to-one
+
+
+
